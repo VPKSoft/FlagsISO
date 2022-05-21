@@ -25,16 +25,10 @@
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
 		<DebugType>pdbonly</DebugType>
 	</PropertyGroup>
-	<PropertyGroup>
-		<ApplicationIcon>library.ico</ApplicationIcon>
-	</PropertyGroup>
 	<ItemGroup>
-	  <Compile Remove="Resources\flags-iso\**" />
-	  <EmbeddedResource Remove="Resources\flags-iso\**" />
-	  <None Remove="Resources\flags-iso\**" />
-	</ItemGroup>
-	<ItemGroup>
-		<Content Include="library.ico" />
+		<Compile Remove="Resources\flags-iso\**" />
+		<EmbeddedResource Remove="Resources\flags-iso\**" />
+		<None Remove="Resources\flags-iso\**" />
 	</ItemGroup>
 	<ItemGroup>
 		<Compile Update="FlagIcons.Designer.cs">
