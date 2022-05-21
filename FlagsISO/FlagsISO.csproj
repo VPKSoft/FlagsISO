@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<AssemblyTitle>FlagsISO</AssemblyTitle>
+		<Company>VPKSoft</Company>
+		<Product>FlagsISO</Product>
+		<Description>Country flags in different sizes and a ComboBox control to select a country.</Description>
+		<Copyright>Copyright © VPKSoft 2018</Copyright>
+		<Version>1.0.0.1</Version>
+		<AssemblyVersion>1.0.0.1</AssemblyVersion>
+		<FileVersion>1.0.0.1</FileVersion>
+		<OutputPath>bin\$(Configuration)\</OutputPath>
+		<DocumentationFile>bin\$(Configuration)\FlagsISO.xml</DocumentationFile>
+		<Authors>VPKSoft</Authors>
+		<PackageIconUrl>https://www.vpksoft.net/site/VPKSoft.ico</PackageIconUrl>
+		<PackageLicenseUrl>https://www.gnu.org/licenses/lgpl.txt</PackageLicenseUrl>
+		<PackageProjectUrl>https://www.vpksoft.net/2015-03-31-13-33-28/libraries/flagsiso</PackageProjectUrl>
+		<PackageReleaseNotes>Initial NuGet release with one bugfix.</PackageReleaseNotes>
+		<PackageTags>FlagsISO VPKSoft country flags ISO</PackageTags>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<DebugType>full</DebugType>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<DebugType>pdbonly</DebugType>
+	</PropertyGroup>
+	<PropertyGroup>
+		<ApplicationIcon>library.ico</ApplicationIcon>
+	</PropertyGroup>
+	<ItemGroup>
+	  <Compile Remove="Resources\flags-iso\**" />
+	  <EmbeddedResource Remove="Resources\flags-iso\**" />
+	  <None Remove="Resources\flags-iso\**" />
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="library.ico" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Update="FlagIcons.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>FlagIcons.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Update="FlagIcons.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>FlagIcons.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+</Project>
