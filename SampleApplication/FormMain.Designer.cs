@@ -58,6 +58,8 @@ namespace SampleApplication
             this.pbFlag = new System.Windows.Forms.PictureBox();
             this.lbIconList = new System.Windows.Forms.ListBox();
             this.gbSizes = new System.Windows.Forms.GroupBox();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.rbCustom = new System.Windows.Forms.RadioButton();
             this.rb64 = new System.Windows.Forms.RadioButton();
             this.rb48 = new System.Windows.Forms.RadioButton();
             this.rb32 = new System.Windows.Forms.RadioButton();
@@ -67,28 +69,34 @@ namespace SampleApplication
             this.lbCountryLongName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbFlag)).BeginInit();
             this.gbSizes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // pbFlag
             // 
             this.pbFlag.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pbFlag.Location = new System.Drawing.Point(251, 182);
+            this.pbFlag.Location = new System.Drawing.Point(251, 206);
             this.pbFlag.Name = "pbFlag";
-            this.pbFlag.Size = new System.Drawing.Size(146, 64);
+            this.pbFlag.Size = new System.Drawing.Size(146, 88);
             this.pbFlag.TabIndex = 3;
             this.pbFlag.TabStop = false;
             // 
             // lbIconList
             // 
+            this.lbIconList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lbIconList.FormattingEnabled = true;
+            this.lbIconList.ItemHeight = 15;
             this.lbIconList.Location = new System.Drawing.Point(12, 12);
             this.lbIconList.Name = "lbIconList";
-            this.lbIconList.Size = new System.Drawing.Size(227, 264);
+            this.lbIconList.Size = new System.Drawing.Size(227, 289);
             this.lbIconList.TabIndex = 5;
             this.lbIconList.SelectedIndexChanged += new System.EventHandler(this.lbIconList_SelectedIndexChanged);
             // 
             // gbSizes
             // 
+            this.gbSizes.Controls.Add(this.numericUpDown1);
+            this.gbSizes.Controls.Add(this.rbCustom);
             this.gbSizes.Controls.Add(this.rb64);
             this.gbSizes.Controls.Add(this.rb48);
             this.gbSizes.Controls.Add(this.rb32);
@@ -96,10 +104,44 @@ namespace SampleApplication
             this.gbSizes.Controls.Add(this.rb16);
             this.gbSizes.Location = new System.Drawing.Point(245, 12);
             this.gbSizes.Name = "gbSizes";
-            this.gbSizes.Size = new System.Drawing.Size(152, 141);
+            this.gbSizes.Size = new System.Drawing.Size(152, 165);
             this.gbSizes.TabIndex = 6;
             this.gbSizes.TabStop = false;
             this.gbSizes.Text = "Flag size";
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(92, 136);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            70,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(54, 23);
+            this.numericUpDown1.TabIndex = 6;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.lbIconList_SelectedIndexChanged);
+            // 
+            // rbCustom
+            // 
+            this.rbCustom.AutoSize = true;
+            this.rbCustom.Location = new System.Drawing.Point(6, 136);
+            this.rbCustom.Name = "rbCustom";
+            this.rbCustom.Size = new System.Drawing.Size(67, 19);
+            this.rbCustom.TabIndex = 5;
+            this.rbCustom.Text = "Custom";
+            this.rbCustom.UseVisualStyleBackColor = true;
+            this.rbCustom.Click += new System.EventHandler(this.lbIconList_SelectedIndexChanged);
             // 
             // rb64
             // 
@@ -107,7 +149,7 @@ namespace SampleApplication
             this.rb64.Checked = true;
             this.rb64.Location = new System.Drawing.Point(6, 111);
             this.rb64.Name = "rb64";
-            this.rb64.Size = new System.Drawing.Size(54, 17);
+            this.rb64.Size = new System.Drawing.Size(55, 19);
             this.rb64.TabIndex = 4;
             this.rb64.TabStop = true;
             this.rb64.Text = "64x64";
@@ -119,7 +161,7 @@ namespace SampleApplication
             this.rb48.AutoSize = true;
             this.rb48.Location = new System.Drawing.Point(6, 88);
             this.rb48.Name = "rb48";
-            this.rb48.Size = new System.Drawing.Size(54, 17);
+            this.rb48.Size = new System.Drawing.Size(55, 19);
             this.rb48.TabIndex = 3;
             this.rb48.Text = "48x48";
             this.rb48.UseVisualStyleBackColor = true;
@@ -130,7 +172,7 @@ namespace SampleApplication
             this.rb32.AutoSize = true;
             this.rb32.Location = new System.Drawing.Point(6, 65);
             this.rb32.Name = "rb32";
-            this.rb32.Size = new System.Drawing.Size(54, 17);
+            this.rb32.Size = new System.Drawing.Size(55, 19);
             this.rb32.TabIndex = 2;
             this.rb32.Text = "32x32";
             this.rb32.UseVisualStyleBackColor = true;
@@ -141,7 +183,7 @@ namespace SampleApplication
             this.rb24.AutoSize = true;
             this.rb24.Location = new System.Drawing.Point(6, 42);
             this.rb24.Name = "rb24";
-            this.rb24.Size = new System.Drawing.Size(54, 17);
+            this.rb24.Size = new System.Drawing.Size(55, 19);
             this.rb24.TabIndex = 1;
             this.rb24.Text = "24x24";
             this.rb24.UseVisualStyleBackColor = true;
@@ -152,7 +194,7 @@ namespace SampleApplication
             this.rb16.AutoSize = true;
             this.rb16.Location = new System.Drawing.Point(6, 19);
             this.rb16.Name = "rb16";
-            this.rb16.Size = new System.Drawing.Size(54, 17);
+            this.rb16.Size = new System.Drawing.Size(55, 19);
             this.rb16.TabIndex = 0;
             this.rb16.Text = "16x16";
             this.rb16.UseVisualStyleBackColor = true;
@@ -161,9 +203,9 @@ namespace SampleApplication
             // cbShiny
             // 
             this.cbShiny.AutoSize = true;
-            this.cbShiny.Location = new System.Drawing.Point(251, 159);
+            this.cbShiny.Location = new System.Drawing.Point(251, 183);
             this.cbShiny.Name = "cbShiny";
-            this.cbShiny.Size = new System.Drawing.Size(52, 17);
+            this.cbShiny.Size = new System.Drawing.Size(55, 19);
             this.cbShiny.TabIndex = 7;
             this.cbShiny.Text = "Shiny";
             this.cbShiny.UseVisualStyleBackColor = true;
@@ -172,16 +214,16 @@ namespace SampleApplication
             // lbCountryLongName
             // 
             this.lbCountryLongName.AutoSize = true;
-            this.lbCountryLongName.Location = new System.Drawing.Point(248, 263);
+            this.lbCountryLongName.Location = new System.Drawing.Point(251, 297);
             this.lbCountryLongName.Name = "lbCountryLongName";
-            this.lbCountryLongName.Size = new System.Drawing.Size(103, 13);
+            this.lbCountryLongName.Size = new System.Drawing.Size(119, 15);
             this.lbCountryLongName.TabIndex = 8;
             this.lbCountryLongName.Text = "lbCountryLongName";
             // 
             // FormMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(410, 291);
+            this.ClientSize = new System.Drawing.Size(414, 321);
             this.Controls.Add(this.lbCountryLongName);
             this.Controls.Add(this.cbShiny);
             this.Controls.Add(this.gbSizes);
@@ -196,6 +238,7 @@ namespace SampleApplication
             ((System.ComponentModel.ISupportInitialize)(this.pbFlag)).EndInit();
             this.gbSizes.ResumeLayout(false);
             this.gbSizes.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -213,6 +256,8 @@ namespace SampleApplication
         private System.Windows.Forms.RadioButton rb16;
         private System.Windows.Forms.CheckBox cbShiny;
         private System.Windows.Forms.Label lbCountryLongName;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.RadioButton rbCustom;
     }
 }
 

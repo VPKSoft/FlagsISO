@@ -50,9 +50,9 @@
 		</Compile>
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\FlagsIso\FlagsISO.csproj" />
+		<Content Include="VPKSoft.ico" />
 	</ItemGroup>
 	<ItemGroup>
-		<Content Include="VPKSoft.ico" />
+	  <ProjectReference Include="..\FlagsISO.WinForms\FlagsISO.WinForms.csproj" />
 	</ItemGroup>
 </Project>

@@ -42,14 +42,16 @@ public partial class ComboBoxCountrySelect : ComboBox
         InitializeComponent();
     }
 
+    private ImageProvider provider = new();
+
     /// <summary>
     /// Reconstructs the combo box drawing arguments if on a a property change.
     /// </summary>
     private void ReInit()
     {
-        this.Items.Clear();
-        this.IntegralHeight = false;
-        List<string> countriesTwoLetter = FlagsISO.CountryFlagsISO.GetCountries();
+        Items.Clear();
+        IntegralHeight = false;
+        List<string> countriesTwoLetter = CountryFlagsISO.GetCountries();
         List<KeyValuePair<string, string>> countries = new List<KeyValuePair<string, string>>();
 
         int currentIndex = 0, counter = 0;
@@ -91,27 +93,27 @@ public partial class ComboBoxCountrySelect : ComboBox
 
         foreach (KeyValuePair<string, string> country in countries)
         {
-            this.Items.Add(country);
+            Items.Add(country);
         }
 
-        if (this.Items.Count > 0 && currentIndex < this.Items.Count)
+        if (Items.Count > 0 && currentIndex < Items.Count)
         {
-            this.SelectedIndex = currentIndex;
+            SelectedIndex = currentIndex;
         }
-        else if (this.Items.Count > 0)
+        else if (Items.Count > 0)
         {
-            this.SelectedIndex = 0;
+            SelectedIndex = 0;
         }
 
-        this.DropDownStyle = ComboBoxStyle.DropDownList;
+        DropDownStyle = ComboBoxStyle.DropDownList;
 
         DrawItem -= ComboBoxCountrySelect_DrawItem!; // Lets not stack them
 
         DrawItem += ComboBoxCountrySelect_DrawItem!; // Attach the drawing event
-        DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed; // Set the drawing mode
+        DrawMode = DrawMode.OwnerDrawFixed; // Set the drawing mode
     }
 
-    Size stringSize = new Size();
+    Size stringSize;
 
     /// <summary>
     /// The custom draw event of the ComboBox.
@@ -126,33 +128,43 @@ public partial class ComboBoxCountrySelect : ComboBox
             return;
         }
 
-        string drawString = ((KeyValuePair<string, string>)this.Items[e.Index]).Value;
+        string drawString = ((KeyValuePair<string, string>)Items[e.Index]).Value;
 
         try
         {
-            stringSize = e.Graphics.MeasureString(drawString, this.Font).ToSize();
+            stringSize = e.Graphics.MeasureString(drawString, Font).ToSize();
         }
         catch
         {
             // ignored
         }
 
-        using var memoryStream = new MemoryStream(CountryFlagsISO.GetForCountry(((KeyValuePair<string, string>)this.Items[e.Index]).Key, FlagSizeInternal, !dontGetShiny));
-        using var bitmap = new Bitmap(memoryStream);
+        if (FlagSize != FlagSizeType.Custom)
+        {
+            using var memoryStream =
+                new MemoryStream(CountryFlagsISO.GetForCountry(((KeyValuePair<string, string>)Items[e.Index]).Key,
+                    FlagSizeInternal, !dontGetShiny));
+            using var bitmap = new Bitmap(memoryStream);
 
-        e.Graphics.DrawImage(bitmap, new Point(e.Bounds.Left, e.Bounds.Top));
+            e.Graphics.DrawImage(bitmap, new Point(e.Bounds.Left, e.Bounds.Top));
+        }
+        else
+        {
+            using var bitmap = provider.GetScaledImage(((KeyValuePair<string, string>)Items[e.Index]).Key, CustomWidth);
+            e.Graphics.DrawImage(bitmap, new Point(e.Bounds.Left, e.Bounds.Top));
+        }
 
         try
         {
             e.Graphics.DrawString(drawString,
-                this.Font,
-                new SolidBrush(this.ForeColor),
-                new PointF(this.RightToLeft == RightToLeft.Yes ? e.Bounds.Right - stringSize.Width : e.Bounds.Left + FlagSizePixels + 2,
+                Font,
+                new SolidBrush(ForeColor),
+                new PointF(RightToLeft == RightToLeft.Yes ? e.Bounds.Right - stringSize.Width : e.Bounds.Left + FlagSizePixels + 2,
                     e.Bounds.Top + e.Bounds.Height / 2 - stringSize.Height / 2));
         }
         catch
         {
-
+            // ignored
         }
     }
 
@@ -178,11 +190,11 @@ public partial class ComboBoxCountrySelect : ComboBox
             return;
         }
 
-        for (int i = this.Items.Count - 1; i >= 0; i--)
+        for (int i = Items.Count - 1; i >= 0; i--)
         {
-            if (!regions.Exists((r) => r.TwoLetterISORegionName == ((KeyValuePair<string, string>)this.Items[i]).Key))
+            if (!regions.Exists(r => r.TwoLetterISORegionName == ((KeyValuePair<string, string>)Items[i]).Key))
             {
-                this.Items.RemoveAt(i);
+                Items.RemoveAt(i);
             }
         }
     }
@@ -209,11 +221,11 @@ public partial class ComboBoxCountrySelect : ComboBox
             return;
         }
 
-        for (int i = this.Items.Count - 1; i >= 0; i--)
+        for (int i = Items.Count - 1; i >= 0; i--)
         {
-            if (regions.Exists((r) => r.TwoLetterISORegionName == ((KeyValuePair<string, string>)this.Items[i]).Key))
+            if (regions.Exists(r => r.TwoLetterISORegionName == ((KeyValuePair<string, string>)Items[i]).Key))
             {
-                this.Items.RemoveAt(i);
+                Items.RemoveAt(i);
             }
         }
     }
@@ -232,12 +244,12 @@ public partial class ComboBoxCountrySelect : ComboBox
     /// <summary>
     /// A value indicating wether to use a native or english name of the regions in the ComboBox.
     /// </summary>
-    private bool useNativeName = false;
+    private bool useNativeName;
 
     /// <summary>
     /// A value indicating wether to use shiny flag icons in the ComboBox.
     /// </summary>
-    private bool dontGetShiny = false;
+    private bool dontGetShiny;
 
     /// <summary>
     /// An icon size in pixels to use in the ComboBox.
@@ -267,7 +279,12 @@ public partial class ComboBoxCountrySelect : ComboBox
         /// <summary>
         /// 64 pixel icon.
         /// </summary>
-        Size64
+        Size64,
+
+        /// <summary>
+        /// The custom size for scalable image resource.
+        /// </summary>
+        Custom,
     }
 
     /// <summary>
@@ -276,10 +293,7 @@ public partial class ComboBoxCountrySelect : ComboBox
     [Description("Gets or sets a value indicating wether to use a native or english name of the regions in the ComboBox."), Category("CountryFlagsISO")]
     public bool UseNativeName
     {
-        get
-        {
-            return useNativeName;
-        }
+        get => useNativeName;
 
         set
         {
@@ -289,15 +303,12 @@ public partial class ComboBoxCountrySelect : ComboBox
     }
 
     /// <summary>
-    /// Gets or sets a value indicating wether to use shiny flag icons in the ComboBox.
+    /// Gets or sets a value indicating whether to use shiny flag icons in the ComboBox.
     /// </summary>
     [Description("Gets or sets a value indicating wether to use shiny flag icons in the ComboBox."), Category("CountryFlagsISO")]
     public bool DontGetShiny
     {
-        get
-        {
-            return dontGetShiny;
-        }
+        get => dontGetShiny;
 
         set
         {
@@ -312,18 +323,15 @@ public partial class ComboBoxCountrySelect : ComboBox
     [Description("Gets or sets the selected region of the ComboBox."), Category("CountryFlagsISO")]
     public RegionInfo SelectedRegion
     {
-        get
-        {
-            return this.SelectedIndex == -1 ? RegionInfo.CurrentRegion : new RegionInfo(((KeyValuePair<string, string>)this.Items[this.SelectedIndex]).Key);
-        }
+        get => SelectedIndex == -1 ? RegionInfo.CurrentRegion : new RegionInfo(((KeyValuePair<string, string>)Items[SelectedIndex]).Key);
 
         set
         {
-            for (int i = 0; i < this.Items.Count; i++)
+            for (int i = 0; i < Items.Count; i++)
             {
-                if (((KeyValuePair<string, string>)this.Items[i]).Key == value.TwoLetterISORegionName)
+                if (((KeyValuePair<string, string>)Items[i]).Key == value.TwoLetterISORegionName)
                 {
-                    this.SelectedIndex = i;
+                    SelectedIndex = i;
                     return;
                 }
             }
@@ -334,49 +342,25 @@ public partial class ComboBoxCountrySelect : ComboBox
     /// Gets the selected region's CultureInfo class instance of the ComboBox.
     /// </summary>
     [Description("Gets the selected region's CultureInfo class instance of the ComboBox."), Category("CountryFlagsISO")]
-    public CultureInfo SelectedCulture
-    {
-        get
-        {
-            return CultureInfo.GetCultureInfoByIetfLanguageTag(SelectedRegion.TwoLetterISORegionName.ToLower());
-        }
-    }
+    public CultureInfo SelectedCulture => CultureInfo.GetCultureInfoByIetfLanguageTag(SelectedRegion.TwoLetterISORegionName.ToLower());
 
     /// <summary>
     /// Gets a two letter ISO country name of the selected region of the ComboBox.
     /// </summary>
     [Description("Gets a two letter ISO country name of the selected region of the ComboBox."), Category("CountryFlagsISO")]
-    public string SelectedTwoLetterIsoName
-    {
-        get
-        {
-            return SelectedRegion.TwoLetterISORegionName;
-        }
-    }
+    public string SelectedTwoLetterIsoName => SelectedRegion.TwoLetterISORegionName;
 
     /// <summary>
     /// Gets a native country name of the selected region of the ComboBox.
     /// </summary>
     [Description("Gets a native country name of the selected region of the ComboBox."), Category("CountryFlagsISO")]
-    public string SelectedNativeName
-    {
-        get
-        {
-            return SelectedRegion.NativeName;
-        }
-    }
+    public string SelectedNativeName => SelectedRegion.NativeName;
 
     /// <summary>
     /// Gets an english country name of the selected region of the ComboBox.
     /// </summary>
     [Description("Gets an english country name of the selected region of the ComboBox."), Category("CountryFlagsISO")]
-    public string SelectedEnglishName
-    {
-        get
-        {
-            return SelectedRegion.EnglishName;
-        }
-    }
+    public string SelectedEnglishName => SelectedRegion.EnglishName;
 
     private FlagSizeType flagSize = FlagSizeType.Size16;
 
@@ -386,10 +370,7 @@ public partial class ComboBoxCountrySelect : ComboBox
     [Description("Gets or sets the flag size used in the ComboBox."), Category("CountryFlagsISO")]
     public FlagSizeType FlagSize
     {
-        get
-        {
-            return flagSize;
-        }
+        get => flagSize;
 
         set
         {
@@ -411,10 +392,33 @@ public partial class ComboBoxCountrySelect : ComboBox
                 case FlagSizeType.Size64:
                     ItemHeight = 63;
                     break;
+                case FlagSizeType.Custom:
+                    ItemHeight = (int)(customWidth / 4.0 * 3.0); // 4:3
+                    break;
             }
         }
     }
     #endregion
+
+    private int customWidth = 100;
+
+    public int CustomWidth
+    {
+        get => customWidth;
+
+        set
+        {
+            if (customWidth != value)
+            {
+                customWidth = value;
+                ItemHeight = (int)(customWidth / 4.0 * 3.0); // 4:3
+                if (FlagSize == FlagSizeType.Custom)
+                {
+                    ReInit();
+                }
+            }
+        }
+    }
 
     /// <summary>
     /// Gets the internal flag size enumeration used on the library.
@@ -473,15 +477,9 @@ public partial class ComboBoxCountrySelect : ComboBox
     [Browsable(false)]
     public new ComboBoxStyle DropDownStyle
     {
-        get
-        {
-            return base.DropDownStyle;
-        }
+        get => base.DropDownStyle;
 
-        set
-        {
-            base.DropDownStyle = value;
-        }
+        set => base.DropDownStyle = value;
     }
 
     /// <summary>
@@ -490,15 +488,9 @@ public partial class ComboBoxCountrySelect : ComboBox
     [Browsable(false)]
     public new string Text
     {
-        get
-        {
-            return base.Text;
-        }
+        get => base.Text;
 
-        set
-        {
-            base.Text = value;
-        }
+        set => base.Text = value;
     }
 
     /// <summary>
@@ -507,137 +499,70 @@ public partial class ComboBoxCountrySelect : ComboBox
     [Browsable(false)]
     public new DrawMode DrawMode
     {
-        get
-        {
-            return base.DrawMode;
-        }
+        get => base.DrawMode;
 
-        set
-        {
-            base.DrawMode = value;
-        }
+        set => base.DrawMode = value;
     }
 
     /// <summary>
     /// Gets a custom System.Collections.Specialized.StringCollection to use when the AutoCompleteSource property is set to CustomSource.
     /// </summary>
     [Browsable(false)]
-    public new AutoCompleteStringCollection AutoCompleteCustomSource
-    {
-        get
-        {
-            return base.AutoCompleteCustomSource;
-        }
-    }
+    public new AutoCompleteStringCollection AutoCompleteCustomSource => base.AutoCompleteCustomSource;
 
     /// <summary>
     /// Gets an option that controls how automatic completion works for the ComboBox.
     /// </summary>
     [Browsable(false)]
-    public new AutoCompleteMode AutoCompleteMode
-    {
-        get
-        {
-            return base.AutoCompleteMode;
-        }
-    }
+    public new AutoCompleteMode AutoCompleteMode => base.AutoCompleteMode;
 
     /// <summary>
     /// Gets a value specifying the source of complete strings used for automatic completion.
     /// </summary>
     [Browsable(false)]
-    public new AutoCompleteSource AutoCompleteSource
-    {
-        get
-        {
-            return base.AutoCompleteSource;
-        }
-    }
+    public new AutoCompleteSource AutoCompleteSource => base.AutoCompleteSource;
 
     /// <summary>
     /// Gets the format-specifier characters that indicate how a value is to be displayed.
     /// </summary>
     [Browsable(false)]
-    public new string FormatString
-    {
-        get
-        {
-            return base.FormatString;
-        }
-    }
+    public new string FormatString => base.FormatString;
 
     /// <summary>
     /// Gets a value indicating whether formatting is applied to the DisplayMember property of the ListControl.
     /// </summary>
     [Browsable(false)]
-    public new bool FormattingEnabled
-    {
-        get
-        {
-            return base.FormattingEnabled;
-        }
-    }
+    public new bool FormattingEnabled => base.FormattingEnabled;
 
     /// <summary>
     /// Gets the data source for this ComboBox.
     /// </summary>
     [Browsable(false)]
-    public new object DataSource
-    {
-        get
-        {
-            return base.DataSource;
-        }
-    }
+    public new object DataSource => base.DataSource;
 
     /// <summary>
     /// Gets the data bindings for the control.
     /// </summary>
     [Browsable(false)]
-    public new ControlBindingsCollection DataBindings
-    {
-        get
-        {
-            return base.DataBindings;
-        }
-    }
+    public new ControlBindingsCollection DataBindings => base.DataBindings;
 
     /// <summary>
     /// Gets an object representing the collection of the items contained in this ComboBox.
     /// </summary>
     [Browsable(false)]
-    public new ObjectCollection Items
-    {
-        get
-        {
-            return base.Items;
-
-        }
-    }
+    public new ObjectCollection Items => base.Items;
 
     /// <summary>
     /// Gets the path of the property to use as the actual value for the items in the ListControl.
     /// </summary>
     [Browsable(false)]
-    public new string ValueMember
-    {
-        get
-        {
-            return base.ValueMember;
-        }
-    }
+    public new string ValueMember => base.ValueMember;
 
     /// <summary>
     /// Gets the property to display for this ListControl.
     /// </summary>
     [Browsable(false)]
-    public new string DisplayMember
-    {
-        get
-        {
-            return base.DisplayMember;
-        }
-    }
+    public new string DisplayMember => base.DisplayMember;
 
     /// <summary>
     /// Gets or sets the height of an item in the combo box.
@@ -645,15 +570,9 @@ public partial class ComboBoxCountrySelect : ComboBox
     [Browsable(false)]
     public new int ItemHeight
     {
-        get
-        {
-            return base.ItemHeight;
-        }
+        get => base.ItemHeight;
 
-        set
-        {
-            base.ItemHeight = value;
-        }
+        set => base.ItemHeight = value;
     }
 
     /// <summary>
@@ -662,15 +581,9 @@ public partial class ComboBoxCountrySelect : ComboBox
     [Browsable(false)]
     public new bool IntegralHeight
     {
-        get
-        {
-            return base.IntegralHeight;
-        }
+        get => base.IntegralHeight;
 
-        set
-        {
-            base.IntegralHeight = value;
-        }
+        set => base.IntegralHeight = value;
     }
 
     #endregion

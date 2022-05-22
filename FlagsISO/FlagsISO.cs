@@ -39,6 +39,7 @@ public enum FlagSizes
     /// <summary>
     /// 16x16 bitmap.
     /// </summary>
+    // ReSharper disable five times InconsistentNaming
     Size_x_16,
     /// <summary>
     /// 24 x 24 bitmap.
@@ -55,14 +56,37 @@ public enum FlagSizes
     /// <summary>
     /// 64x64 bitmap.
     /// </summary>
-    Size_x_64
+    Size_x_64,
 };
 
 /// <summary>
-/// A class to get coutry flags to your application.
+/// A class to get country flags to your application.
 /// </summary>
-public class CountryFlagsISO
+public static class CountryFlagsISO
 {
+    /// <summary>
+    /// Gets the SVG flag two letter ISO codes.
+    /// </summary>
+    /// <value>The SVG flag two letter ISO codes.</value>
+    public static IReadOnlyList<string> SvgFlagCodes { get; } = new List<string>(new[]
+    {
+        "ac", "ad", "ae", "af", "ag", "ai", "al", "am", "ao", "aq", "ar", "as", "at", "au", "aw", "ax", "az", "ba",
+        "bb", "bd", "be", "bf", "bg", "bh", "bi", "bj", "bl", "bm", "bn", "bo", "bq", "br", "bs", "bt", "bv", "bw",
+        "by", "bz", "ca", "cc", "cd", "cefta", "cf", "cg", "ch", "ci", "ck", "cl", "cm", "cn", "co", "cp", "cr", "cu",
+        "cv", "cw", "cx", "cy", "cz", "de", "dg", "dj", "dk", "dm", "do", "dz", "ea", "ec", "ee", "eg", "eh", "er",
+        "es-ct", "es-ga", "es", "et", "eu", "fi", "fj", "fk", "fm", "fo", "fr", "ga", "gb-eng", "gb-nir", "gb-sct",
+        "gb-wls", "gb", "gd", "ge", "gf", "gg", "gh", "gi", "gl", "gm", "gn", "gp", "gq", "gr", "gs", "gt", "gu", "gw",
+        "gy", "hk", "hm", "hn", "hr", "ht", "hu", "ic", "id", "ie", "il", "im", "in", "io", "iq", "ir", "is", "it",
+        "je", "jm", "jo", "jp", "ke", "kg", "kh", "ki", "km", "kn", "kp", "kr", "kw", "ky", "kz", "la", "lb", "lc",
+        "li", "lk", "lr", "ls", "lt", "lu", "lv", "ly", "ma", "mc", "md", "me", "mf", "mg", "mh", "mk", "ml", "mm",
+        "mn", "mo", "mp", "mq", "mr", "ms", "mt", "mu", "mv", "mw", "mx", "my", "mz", "na", "nc", "ne", "nf", "ng",
+        "ni", "nl", "no", "np", "nr", "nu", "nz", "om", "pa", "pe", "pf", "pg", "ph", "pk", "pl", "pm", "pn", "pr",
+        "ps", "pt", "pw", "py", "qa", "re", "ro", "rs", "ru", "rw", "sa", "sb", "sc", "sd", "se", "sg", "sh", "si",
+        "sj", "sk", "sl", "sm", "sn", "so", "sr", "ss", "st", "sv", "sx", "sy", "sz", "ta", "tc", "td", "tf", "tg",
+        "th", "tj", "tk", "tl", "tm", "tn", "to", "tr", "tt", "tv", "tw", "tz", "ua", "ug", "um", "un", "us", "uy",
+        "uz", "va", "vc", "ve", "vg", "vi", "vn", "vu", "wf", "ws", "xk", "xx", "ye", "yt", "za", "zm", "zw",
+    });
+
     /// <summary>
     /// Gets a bitmap of a country flag.
     /// </summary>
@@ -142,7 +166,7 @@ public class CountryFlagsISO
             resBitmapName += "_64x";
         }
         resBitmapName += name;
-        return (byte[])FlagIcons.ResourceManager.GetObject(resBitmapName);
+        return (byte[]?)FlagIcons.ResourceManager.GetObject(resBitmapName) ?? Array.Empty<byte>();
     }
 
     /// <summary>
@@ -161,7 +185,7 @@ public class CountryFlagsISO
     /// <para/>flags are included in this library. The codes
     /// <para/>are in two letter ISO country names except for
     /// <para/>few that aren't considered as countries or don't
-    /// <para/>have globally accepted country status or is't
+    /// <para/>have globally accepted country status or isn't
     /// <para/>a country (e.g. "_united_nations").
     /// </summary>
     /// <returns>A list of strings in two letter ISO country names.</returns>
@@ -213,7 +237,7 @@ public class CountryFlagsISO
             }
             catch
             {
-                // do nothin
+                // do nothing
             }
         }
         return retVal;
@@ -233,12 +257,12 @@ public class CountryFlagsISO
         {
             try
             {
-                new RegionInfo(i.LCID);
+                _ = new RegionInfo(i.LCID);
                 retVal.Add(i);
             }
             catch
             {
-                // do nothin
+                // do nothing
             }
         }
         return retVal;

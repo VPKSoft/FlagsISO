@@ -1,23 +1,33 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <UseWindowsForms>true</UseWindowsForms>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>net48;net5.0-windows;net6.0-windows;netcoreapp3.1</TargetFrameworks>
+		<Nullable>enable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\FlagsIso\FlagsISO.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="Svg" Version="3.4.2" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="ComboBoxCountrySelect.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Update="ComboBoxCountrySelect.Designer.cs">
-      <DependentUpon>ComboBoxCountrySelect.cs</DependentUpon>
-    </Compile>
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\FlagsIso\FlagsISO.csproj" />
+	</ItemGroup>
 
+	<ItemGroup>
+		<Compile Update="ComboBoxCountrySelect.cs">
+			<SubType>Component</SubType>
+		</Compile>
+		<Compile Update="ComboBoxCountrySelect.Designer.cs">
+			<DependentUpon>ComboBoxCountrySelect.cs</DependentUpon>
+		</Compile>
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net48' ">
+		<Reference Include="System.Windows.Forms" />
+		<Reference Include="System.Data.DataSetExtensions" />
+		<Reference Include="Microsoft.CSharp" />
+		<Reference Include="System.Net.Http" />
+	</ItemGroup>
 </Project>

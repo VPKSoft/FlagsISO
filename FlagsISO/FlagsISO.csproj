@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFrameworks>net48;net5.0;net6.0;netcoreapp3.1;netstandard2.1</TargetFrameworks>
 		<AssemblyTitle>FlagsISO</AssemblyTitle>
 		<Company>VPKSoft</Company>
 		<Product>FlagsISO</Product>
@@ -18,6 +18,8 @@
 		<PackageReleaseNotes>Initial NuGet release with one bugfix.</PackageReleaseNotes>
 		<PackageTags>FlagsISO VPKSoft country flags ISO</PackageTags>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<LangVersion>latest</LangVersion>
+		<Nullable>enable</Nullable>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<DebugType>full</DebugType>
@@ -36,11 +38,29 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>FlagIcons.resx</DependentUpon>
 		</Compile>
+		<Compile Update="SvgFlagsBoxRatio.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>SvgFlagsBoxRatio.resx</DependentUpon>
+		</Compile>
+		<Compile Update="SvgFlagsNativeRatio.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>SvgFlagsNativeRatio.resx</DependentUpon>
+		</Compile>
 	</ItemGroup>
 	<ItemGroup>
 		<EmbeddedResource Update="FlagIcons.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>FlagIcons.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="SvgFlagsBoxRatio.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>SvgFlagsBoxRatio.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="SvgFlagsNativeRatio.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>SvgFlagsNativeRatio.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 	</ItemGroup>
 </Project>

@@ -44,8 +44,12 @@ public partial class FormMain : Form
         lbIconList.SelectedIndex = 0;
     }
 
+    private FlagsISO.WinForms.ImageProvider provider = new();
+
     private void lbIconList_SelectedIndexChanged(object sender, EventArgs e)
     {
+        cbShiny.Enabled = !rbCustom.Checked;
+
         FlagsISO.FlagSizes size = FlagSizes.Size_x_16;
         if (rb16.Checked)
         {
@@ -67,11 +71,17 @@ public partial class FormMain : Form
         {
             size = FlagsISO.FlagSizes.Size_x_64;
         }
+        else if (rbCustom.Checked)
+        {
+            var bitmap = provider.GetScaledBitmap(lbIconList.SelectedItem.ToString(), (float)numericUpDown1.Value);
+            pbFlag.Image = bitmap;
+            lbCountryLongName.Text = CountryFlagsISO.GetNameByTwoLetterISO(lbIconList.SelectedItem.ToString());
+            return;
+        }
 
-        using var memoryStream = new MemoryStream(CountryFlagsISO.GetForCountry(lbIconList.SelectedItem.ToString(), size, cbShiny.Checked));
-        var bitmap = new Bitmap(memoryStream);
+        var png = provider.GetImageBitmap(lbIconList.SelectedItem.ToString(), size, cbShiny.Checked);
 
-        pbFlag.Image = bitmap;
-        lbCountryLongName.Text = CountryFlagsISO.GetNameByTwoLetterISO(lbIconList.SelectedItem.ToString());
+        pbFlag.Image = png;
+
     }
 }
