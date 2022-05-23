@@ -28,6 +28,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Globalization;
+using FlagsISO.Enumerations;
 
 namespace FlagsISO;
 
@@ -88,6 +89,49 @@ public static class CountryFlagsISO
     });
 
     /// <summary>
+    /// Gets the internal flag size enumeration used on the library.
+    /// </summary>
+    public static FlagSizes FlagSizeInternal(FlagSizeType flagSize)
+    {
+        switch (flagSize)
+        {
+            case FlagSizeType.Size16:
+                return FlagSizes.Size_x_16;
+            case FlagSizeType.Size24:
+                return FlagSizes.Size_x_24;
+            case FlagSizeType.Size32:
+                return FlagSizes.Size_x_32;
+            case FlagSizeType.Size48:
+                return FlagSizes.Size_x_48;
+            case FlagSizeType.Size64:
+                return FlagSizes.Size_x_64;
+        }
+        return FlagSizes.Size_x_16;
+    }
+
+    /// <summary>
+    /// Get the assigned flag size in pixels.
+    /// </summary>
+    public static int FlagSizePixels(FlagSizeType flagSize)
+    {
+        switch (flagSize)
+        {
+            case FlagSizeType.Size16:
+                return 16;
+            case FlagSizeType.Size24:
+                return 24;
+            case FlagSizeType.Size32:
+                return 32;
+            case FlagSizeType.Size48:
+                return 48;
+            case FlagSizeType.Size64:
+                return 64;
+        }
+
+        return 16;
+    }
+
+    /// <summary>
     /// Gets a bitmap of a country flag.
     /// </summary>
     /// <param name="culture">CultureInfo class instance to use to get the flag.</param>
@@ -144,6 +188,8 @@ public static class CountryFlagsISO
     /// <returns>A byte[] containing the requested flag or null if the flag was not found.</returns>
     public static byte[] GetForCountry(string name, FlagSizes flagSize, bool shiny)
     {
+        name = name.ToUpperInvariant();
+
         string resBitmapName = shiny ? "shiny" : "flat";
         if (flagSize == FlagSizes.Size_x_16)
         {

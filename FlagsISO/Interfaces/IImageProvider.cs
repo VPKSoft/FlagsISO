@@ -24,6 +24,9 @@ SOFTWARE.
 */
 #endregion
 
+using FlagsISO.Classes;
+using FlagsISO.Enumerations;
+
 namespace FlagsISO.Interfaces;
 
 /// <summary>
@@ -82,5 +85,23 @@ public interface IImageProvider<out TBitmap, out TImage> where TBitmap : class w
     /// <param name="width">The width of the flag .</param>
     /// <returns>An instance to <typeparamref name="TImage"/> class containing the requested flag or null if the flag was not found.</returns>
     TImage? GetScaledImageOneToOne(string countryCode, float width);
+
+    /// <summary>
+    /// Gets the country flag as a platform-supported bitmap scaled to specified size.
+    /// </summary>
+    /// <param name="countryCode">A two letter ISO country code.</param>
+    /// <param name="size">The size to scale the flag into.</param>
+    /// <param name="aspectRatio">The aspect ratio of the original SVG to scale.</param>
+    /// <returns>An instance to <typeparamref name="TBitmap"/> class containing the requested flag or null if the flag was not found.</returns>
+    TBitmap? GetScaledBitmap(string countryCode, PointFloat size, ImageAspectRatio aspectRatio);
+
+    /// <summary>
+    /// Gets the country flag as a platform-supported image scaled to specified size.
+    /// </summary>
+    /// <param name="countryCode">A two letter ISO country code.</param>
+    /// <param name="size">The size to scale the flag into.</param>
+    /// <param name="aspectRatio">The aspect ratio of the original SVG to scale.</param>
+    /// <returns>An instance to <typeparamref name="TImage"/> class containing the requested flag or null if the flag was not found.</returns>
+    TImage? GetScaledImage(string countryCode, PointFloat size, ImageAspectRatio aspectRatio);
 }
 

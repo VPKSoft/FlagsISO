@@ -26,6 +26,7 @@ SOFTWARE.
 
 using System.ComponentModel;
 using System.Globalization;
+using FlagsISO.Enumerations;
 
 namespace FlagsISO.WinForms;
 
@@ -143,7 +144,7 @@ public partial class ComboBoxCountrySelect : ComboBox
         {
             using var memoryStream =
                 new MemoryStream(CountryFlagsISO.GetForCountry(((KeyValuePair<string, string>)Items[e.Index]).Key,
-                    FlagSizeInternal, !dontGetShiny));
+                    CountryFlagsISO.FlagSizeInternal(flagSize), !dontGetShiny));
             using var bitmap = new Bitmap(memoryStream);
 
             e.Graphics.DrawImage(bitmap, new Point(e.Bounds.Left, e.Bounds.Top));
@@ -159,7 +160,7 @@ public partial class ComboBoxCountrySelect : ComboBox
             e.Graphics.DrawString(drawString,
                 Font,
                 new SolidBrush(ForeColor),
-                new PointF(RightToLeft == RightToLeft.Yes ? e.Bounds.Right - stringSize.Width : e.Bounds.Left + FlagSizePixels + 2,
+                new PointF(RightToLeft == RightToLeft.Yes ? e.Bounds.Right - stringSize.Width : e.Bounds.Left + CountryFlagsISO.FlagSizePixels(flagSize) + 2,
                     e.Bounds.Top + e.Bounds.Height / 2 - stringSize.Height / 2));
         }
         catch
@@ -250,42 +251,6 @@ public partial class ComboBoxCountrySelect : ComboBox
     /// A value indicating wether to use shiny flag icons in the ComboBox.
     /// </summary>
     private bool dontGetShiny;
-
-    /// <summary>
-    /// An icon size in pixels to use in the ComboBox.
-    /// </summary>
-    public enum FlagSizeType
-    {
-        /// <summary>
-        /// 16 pixel icon.
-        /// </summary>
-        Size16,
-
-        /// <summary>
-        /// 24 pixel icon.
-        /// </summary>
-        Size24,
-
-        /// <summary>
-        /// 32 pixel icon.
-        /// </summary>
-        Size32,
-
-        /// <summary>
-        /// 48 pixel icon.
-        /// </summary>
-        Size48,
-
-        /// <summary>
-        /// 64 pixel icon.
-        /// </summary>
-        Size64,
-
-        /// <summary>
-        /// The custom size for scalable image resource.
-        /// </summary>
-        Custom,
-    }
 
     /// <summary>
     /// Gets or sets a value indicating wether to use a native or english name of the regions in the ComboBox.
@@ -419,55 +384,6 @@ public partial class ComboBoxCountrySelect : ComboBox
             }
         }
     }
-
-    /// <summary>
-    /// Gets the internal flag size enumeration used on the library.
-    /// </summary>
-    private FlagSizes FlagSizeInternal
-    {
-        get
-        {
-            switch (flagSize)
-            {
-                case FlagSizeType.Size16:
-                    return FlagSizes.Size_x_16;
-                case FlagSizeType.Size24:
-                    return FlagSizes.Size_x_24;
-                case FlagSizeType.Size32:
-                    return FlagSizes.Size_x_32;
-                case FlagSizeType.Size48:
-                    return FlagSizes.Size_x_48;
-                case FlagSizeType.Size64:
-                    return FlagSizes.Size_x_64;
-            }
-            return FlagSizes.Size_x_16;
-        }
-    }
-
-    /// <summary>
-    /// Get the assigned flag size in pixels.
-    /// </summary>
-    private int FlagSizePixels
-    {
-        get
-        {
-            switch (flagSize)
-            {
-                case FlagSizeType.Size16:
-                    return 16;
-                case FlagSizeType.Size24:
-                    return 24;
-                case FlagSizeType.Size32:
-                    return 32;
-                case FlagSizeType.Size48:
-                    return 48;
-                case FlagSizeType.Size64:
-                    return 64;
-            }
-            return 16;
-        }
-    }
-
 
     #region HideBase
 

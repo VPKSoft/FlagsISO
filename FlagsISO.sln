@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CountryComboTest", "Country
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlagsISO.WinForms", "FlagsISO.WinForms\FlagsISO.WinForms.csproj", "{D36AB985-17B5-429A-A7ED-AAB633C87559}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlagsISO.EtoForms", "FlagsISO.EtoForms\FlagsISO.EtoForms.csproj", "{634E7EA0-6E70-4688-84F5-022F719EE26C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlagsISO.EtoForms", "FlagsISO.EtoForms\FlagsISO.EtoForms.csproj", "{634E7EA0-6E70-4688-84F5-022F719EE26C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApplication.EtoForms", "SampleApplication.EtoForms\SampleApplication.EtoForms.csproj", "{B312A9CC-994B-4840-B1F8-8C8D14CC6E1D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{634E7EA0-6E70-4688-84F5-022F719EE26C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{634E7EA0-6E70-4688-84F5-022F719EE26C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{634E7EA0-6E70-4688-84F5-022F719EE26C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B312A9CC-994B-4840-B1F8-8C8D14CC6E1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B312A9CC-994B-4840-B1F8-8C8D14CC6E1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B312A9CC-994B-4840-B1F8-8C8D14CC6E1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B312A9CC-994B-4840-B1F8-8C8D14CC6E1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

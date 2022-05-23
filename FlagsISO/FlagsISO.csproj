@@ -39,14 +39,14 @@
 			<DependentUpon>FlagIcons.resx</DependentUpon>
 		</Compile>
 		<Compile Update="SvgFlagsBoxRatio.Designer.cs">
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-		  <DependentUpon>SvgFlagsBoxRatio.resx</DependentUpon>
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>SvgFlagsBoxRatio.resx</DependentUpon>
 		</Compile>
 		<Compile Update="SvgFlagsNativeRatio.Designer.cs">
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-		  <DependentUpon>SvgFlagsNativeRatio.resx</DependentUpon>
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>SvgFlagsNativeRatio.resx</DependentUpon>
 		</Compile>
 	</ItemGroup>
 	<ItemGroup>
@@ -55,12 +55,12 @@
 			<LastGenOutput>FlagIcons.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="SvgFlagsBoxRatio.resx">
-		  <Generator>PublicResXFileCodeGenerator</Generator>
-		  <LastGenOutput>SvgFlagsBoxRatio.Designer.cs</LastGenOutput>
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>SvgFlagsBoxRatio.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="SvgFlagsNativeRatio.resx">
-		  <Generator>PublicResXFileCodeGenerator</Generator>
-		  <LastGenOutput>SvgFlagsNativeRatio.Designer.cs</LastGenOutput>
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>SvgFlagsNativeRatio.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 	</ItemGroup>
 </Project>

@@ -25,6 +25,8 @@ SOFTWARE.
 #endregion
 
 using System.Globalization;
+using FlagsISO.Classes;
+using FlagsISO.Enumerations;
 using FlagsISO.Interfaces;
 using Svg;
 
@@ -81,7 +83,7 @@ public class ImageProvider : IImageProvider<Bitmap, Image>
         return GetScaledBitmap(countryCode, width, false);
     }
 
-    private static Bitmap? GetScaledBitmap(string countryCode, float width, bool oneToOne)
+    private static Bitmap? GetScaledBitmap(string countryCode, float width, bool oneToOne, float? customHeight = null)
     {
         try
         {
@@ -100,6 +102,11 @@ public class ImageProvider : IImageProvider<Bitmap, Image>
             var image = SvgDocument.Open<SvgDocument>(memoryStream);
 
             var height = oneToOne ? width : width / 4f * 3f; // 4:3 ratio.
+
+            if (customHeight != null)
+            {
+                height = customHeight.Value;
+            }
 
             height = (float)Math.Ceiling(height);
 
@@ -144,5 +151,34 @@ public class ImageProvider : IImageProvider<Bitmap, Image>
     public Image? GetScaledImageOneToOne(string countryCode, float width)
     {
         return GetScaledBitmap(countryCode, width, true);
+    }
+
+    /// <summary>
+    /// Gets the country flag as a platform-supported bitmap scaled to specified size.
+    /// </summary>
+    /// <param name="countryCode">A two letter ISO country code.</param>
+    /// <param name="size">The size to scale the flag into.</param>
+    /// <param name="aspectRatio">The aspect ratio of the original SVG to scale.</param>
+    /// <returns>An instance to <see cref="Bitmap"/> class containing the requested flag or null if the flag was not found.</returns>
+    public Bitmap? GetScaledBitmap(string countryCode, PointFloat size, ImageAspectRatio aspectRatio)
+    {
+        return aspectRatio switch
+        {
+            ImageAspectRatio.OneToOne => GetScaledBitmap(countryCode, size.X, true, size.Y),
+            ImageAspectRatio.FourToThree => GetScaledBitmap(countryCode, size.X, false, size.Y),
+            _ => GetScaledBitmap(countryCode, size.X, false, size.Y),
+        };
+    }
+
+    /// <summary>
+    /// Gets the country flag as a platform-supported bitmap scaled to specified size.
+    /// </summary>
+    /// <param name="countryCode">A two letter ISO country code.</param>
+    /// <param name="size">The size to scale the flag into.</param>
+    /// <param name="aspectRatio">The aspect ratio of the original SVG to scale.</param>
+    /// <returns>An instance to <see cref="Image"/> class containing the requested flag or null if the flag was not found.</returns>
+    public Image? GetScaledImage(string countryCode, PointFloat size, ImageAspectRatio aspectRatio)
+    {
+        return GetScaledBitmap(countryCode, size, aspectRatio);
     }
 }

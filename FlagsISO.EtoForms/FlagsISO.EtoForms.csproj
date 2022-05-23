@@ -5,14 +5,15 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<OutputType>Library</OutputType>
+		<DocumentationFile>bin\$(Configuration)\FlagsISO.EtoForms.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Svg.Skia" Version="0.5.13" />
+		<PackageReference Include="Svg.Skia" Version="0.5.13" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\FlagsIso\FlagsISO.csproj" />
+		<ProjectReference Include="..\FlagsIso\FlagsISO.csproj" />
 	</ItemGroup>
 
 </Project>

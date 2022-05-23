@@ -6,10 +6,11 @@
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<LangVersion>latest</LangVersion>
+		<DocumentationFile>bin\$(Configuration)\FlagsISO.WinForms.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Svg" Version="3.4.2" />
+		<PackageReference Include="Svg" Version="3.4.2" />
 	</ItemGroup>
 
 	<ItemGroup>
