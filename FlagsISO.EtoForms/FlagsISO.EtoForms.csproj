@@ -9,11 +9,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="2.88.0" />
 		<PackageReference Include="Svg.Skia" Version="0.5.13" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\FlagsIso\FlagsISO.csproj" />
+		<ProjectReference Include="..\FlagsISO\FlagsISO.csproj" />
 	</ItemGroup>
 
 </Project>
