@@ -52,7 +52,7 @@ jobs:
 
     # Create the FlagsISO app package by building and packaging the NuGet
     - name: Build the entire project with NuGets
-      run: msbuild $env:Solution_Path /p:Configuration=$env:Configuration
+      run: msbuild $env:Solution_Path /P:Configuration=Release /P:PlatForm="Any CPU"
 
     - name: Decode nuget.config
       run: |
