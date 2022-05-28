@@ -4,22 +4,26 @@
 		<AssemblyTitle>FlagsISO</AssemblyTitle>
 		<Company>VPKSoft</Company>
 		<Product>FlagsISO</Product>
-		<Description>Country flags in different sizes and a ComboBox control to select a country.</Description>
-		<Copyright>Copyright © VPKSoft 2018</Copyright>
-		<Version>1.0.0.1</Version>
-		<AssemblyVersion>1.0.0.1</AssemblyVersion>
-		<FileVersion>1.0.0.1</FileVersion>
+		<Description>Country flags in different sizes.</Description>
+		<Copyright>Copyright © VPKSoft 2022</Copyright>
+		<Version></Version>
 		<OutputPath>bin\$(Configuration)\</OutputPath>
 		<DocumentationFile>bin\$(Configuration)\FlagsISO.xml</DocumentationFile>
 		<Authors>VPKSoft</Authors>
 		<PackageIconUrl>https://www.vpksoft.net/site/VPKSoft.ico</PackageIconUrl>
 		<PackageLicenseUrl>https://www.gnu.org/licenses/lgpl.txt</PackageLicenseUrl>
 		<PackageProjectUrl>https://www.vpksoft.net/2015-03-31-13-33-28/libraries/flagsiso</PackageProjectUrl>
-		<PackageReleaseNotes>Initial NuGet release with one bugfix.</PackageReleaseNotes>
-		<PackageTags>FlagsISO VPKSoft country flags ISO</PackageTags>
+		<PackageReleaseNotes></PackageReleaseNotes>
+		<PackageTags>FlagsISO VPKSoft country flags ISO WinForms</PackageTags>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackageIcon>VPKSoftIcon.png</PackageIcon>
+		<Version>1.1.0.0</Version>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/VPKSoft/FlagsISO</RepositoryUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<DebugType>full</DebugType>
@@ -31,6 +35,16 @@
 		<Compile Remove="Resources\flags-iso\**" />
 		<EmbeddedResource Remove="Resources\flags-iso\**" />
 		<None Remove="Resources\flags-iso\**" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="..\README.md">
+		  <Pack>True</Pack>
+		  <PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\VPKSoftIcon.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 	</ItemGroup>
 	<ItemGroup>
 		<Compile Update="FlagIcons.Designer.cs">

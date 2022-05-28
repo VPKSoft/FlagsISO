@@ -6,7 +6,30 @@
 		<Nullable>enable</Nullable>
 		<OutputType>Library</OutputType>
 		<DocumentationFile>bin\$(Configuration)\FlagsISO.EtoForms.xml</DocumentationFile>
+		<Version>1.0.0.0</Version>
+		<Description>An Eto.Forms package for the FlagISO library.</Description>
+		<PackageProjectUrl>https://github.com/VPKSoft/FlagsISO</PackageProjectUrl>
+		<PackageIcon>VPKSoftIcon.png</PackageIcon>
+		<RepositoryUrl>https://github.com/VPKSoft/FlagsISO</RepositoryUrl>
+		<PackageTags>FlagsISO VPKSoft country flags ISO Eto Forms EtoForms</PackageTags>
+		<PackageReleaseNotes></PackageReleaseNotes>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Copyright>Copyright © VPKSoft 2022</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Include="..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Include="..\VPKSoftIcon.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="2.88.0" />
