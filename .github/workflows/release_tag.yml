@@ -20,7 +20,6 @@ jobs:
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
     env:
-      Solution_Name: FlagsISO.sln
       Solution_Path: FlagsISO.sln
 
       NUGET_APIKEY: ${{ secrets.NUGET_APIKEY }}
@@ -47,7 +46,7 @@ jobs:
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
-      run: msbuild $env:Solution_Name /t:Restore /p:Configuration=Release
+      run: msbuild $env:Solution_Name /t:Restore /P:Configuration=Release /P:PlatForm="Any CPU"
       env:
         Configuration: ${{ matrix.configuration }}
 
