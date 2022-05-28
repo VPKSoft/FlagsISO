@@ -11,7 +11,7 @@
 		<Company>VPKSoft</Company>
 		<Product>FlagsISO Sample Application</Product>
 		<Description>A sample application for the FlagsISO</Description>
-		<Product>StarMap2D.Eto</Product>
+		<Product>SampleApplication.EtoForms</Product>
 		<Nullable>enable</Nullable>
 
 	</PropertyGroup>

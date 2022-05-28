@@ -24,6 +24,8 @@ SOFTWARE.
 */
 #endregion
 
+using FlagsISO.Enumerations;
+
 namespace CountryComboTest
 {
     partial class FormMain
@@ -96,7 +98,7 @@ namespace CountryComboTest
             this.cmbCountrySelect.DontGetShiny = false;
             this.cmbCountrySelect.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cmbCountrySelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbCountrySelect.FlagSize = FlagsISO.WinForms.ComboBoxCountrySelect.FlagSizeType.Size16;
+            this.cmbCountrySelect.FlagSize = FlagSizeType.Size16;
             this.cmbCountrySelect.IntegralHeight = false;
             this.cmbCountrySelect.ItemHeight = 15;
             this.cmbCountrySelect.Location = new System.Drawing.Point(12, 12);
