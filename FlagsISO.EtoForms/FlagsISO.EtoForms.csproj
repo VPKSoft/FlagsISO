@@ -6,7 +6,7 @@
 		<Nullable>enable</Nullable>
 		<OutputType>Library</OutputType>
 		<DocumentationFile>bin\$(Configuration)\FlagsISO.EtoForms.xml</DocumentationFile>
-		<Version>1.0.0.1</Version>
+		<Version>1.0.1</Version>
 		<Description>An Eto.Forms package for the FlagISO library.</Description>
 		<PackageProjectUrl>https://github.com/VPKSoft/FlagsISO</PackageProjectUrl>
 		<PackageIcon>VPKSoftIcon.png</PackageIcon>
