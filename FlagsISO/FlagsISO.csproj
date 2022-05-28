@@ -11,7 +11,6 @@
 		<DocumentationFile>bin\$(Configuration)\FlagsISO.xml</DocumentationFile>
 		<Authors>VPKSoft</Authors>
 		<PackageIconUrl>https://www.vpksoft.net/site/VPKSoft.ico</PackageIconUrl>
-		<PackageLicenseUrl>https://www.gnu.org/licenses/lgpl.txt</PackageLicenseUrl>
 		<PackageProjectUrl>https://www.vpksoft.net/2015-03-31-13-33-28/libraries/flagsiso</PackageProjectUrl>
 		<PackageReleaseNotes></PackageReleaseNotes>
 		<PackageTags>FlagsISO VPKSoft country flags ISO WinForms</PackageTags>
@@ -38,8 +37,8 @@
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="..\README.md">
-		  <Pack>True</Pack>
-		  <PackagePath>\</PackagePath>
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
 		</None>
 		<None Include="..\VPKSoftIcon.png">
 			<Pack>True</Pack>
