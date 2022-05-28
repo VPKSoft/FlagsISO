@@ -11,9 +11,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlagsISO.WinForms", "FlagsI
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlagsISO.EtoForms", "FlagsISO.EtoForms\FlagsISO.EtoForms.csproj", "{634E7EA0-6E70-4688-84F5-022F719EE26C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApplication.EtoForms", "SampleApplication.EtoForms\SampleApplication.EtoForms.csproj", "{B312A9CC-994B-4840-B1F8-8C8D14CC6E1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleApplication.EtoForms", "SampleApplication.EtoForms\SampleApplication.EtoForms.csproj", "{B312A9CC-994B-4840-B1F8-8C8D14CC6E1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlagsISO", "FlagsISO\FlagsISO.csproj", "{73A5E020-2991-40EF-B14F-00BF355A6B13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlagsISO", "FlagsISO\FlagsISO.csproj", "{73A5E020-2991-40EF-B14F-00BF355A6B13}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B351FE28-D13A-4183-B4FD-8C93B53BF740}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\dotnet-desktop.yml = .github\workflows\dotnet-desktop.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
