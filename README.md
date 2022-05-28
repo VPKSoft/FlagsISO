@@ -30,7 +30,7 @@ _An Eto.Forms sample application in Windows (WPF)_
 
 ## Thanks to
 * [Go Squared Ltd](https://www.gosquared.com) For the PNG flac images (MIT): https://www.gosquared.com/resources/flag-icons/.
-* [Lipis](https://github.com/lipis) For the SVG flac images(MIT): [flag-icons](https://github.com/lipis/flag-icons).
+* [Lipis](https://github.com/lipis) For the SVG flac images (MIT): [flag-icons](https://github.com/lipis/flag-icons).
 * [JetBrains](http://www.jetbrains.com) for their open source license(s).
 
 ![image](https://user-images.githubusercontent.com/40712699/170834690-1a5816b1-9611-47d2-8a5a-6f4505d43b2f.png)
