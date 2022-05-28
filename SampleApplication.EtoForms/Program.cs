@@ -30,8 +30,16 @@ using Eto.Forms;
 
 namespace SampleApplication.EtoForms;
 
-class Program
+
+/// <summary>
+/// The program main entry point.
+/// </summary>
+public class Program
 {
+    /// <summary>
+    /// Defines the entry point of the application.
+    /// </summary>
+    /// <param name="args">The arguments.</param>
     [STAThread]
     static void Main(string[] args)
     {

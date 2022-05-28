@@ -30,10 +30,6 @@ using Eto.Forms;
 using FlagsISO;
 using FlagsISO.Enumerations;
 using FlagsISO.EtoForms;
-using CheckBox = Eto.Forms.CheckBox;
-using Label = Eto.Forms.Label;
-using ListBox = Eto.Forms.ListBox;
-using Orientation = Eto.Forms.Orientation;
 
 namespace SampleApplication.EtoForms;
 
@@ -72,6 +68,7 @@ public class FormMain : Form
                 new Label { Text = "Custom size",},
                 nsImageWidth,
                 iwFlag,
+                new Label { Text = "ComboBox sample",},
                 new ComboBoxCountrySelect { UseGlossyImage = true, FlagSizeType = FlagSizeType.Size64, NameDisplayType = CountryNameDisplay.Native,},
             },
             Padding = 5,
@@ -95,11 +92,11 @@ public class FormMain : Form
         lbIconList.SelectedIndexChanged += LbIconList_SelectedIndexChanged;
     }
 
-    private readonly FlagsISO.EtoForms.ImageProvider provider = new();
+    private readonly ImageProvider provider = new();
 
     private void LbIconList_SelectedIndexChanged(object? sender, EventArgs e)
     {
-        FlagsISO.FlagSizes size = FlagSizes.Size_x_16;
+        var size = FlagSizes.Size_x_16;
         switch (rbSizes.SelectedIndex)
         {
             case 0:
