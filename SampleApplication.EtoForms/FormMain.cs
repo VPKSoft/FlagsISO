@@ -122,14 +122,14 @@ public class FormMain : Form
             case 5:
                 if (lbIconList.SelectedKey != null)
                 {
-                    iwFlag.Image = provider.GetScaledBitmap(lbIconList.SelectedKey, (float)nsImageWidth.Value);
+                    iwFlag.Image = provider.GetScaledBitmap(lbIconList.SelectedKey.Trim('\r'), (float)nsImageWidth.Value);
                 }
                 return;
         }
 
         if (lbIconList.SelectedKey != null)
         {
-            iwFlag.Image = provider.GetImage(lbIconList.SelectedKey, size, cbShiny.Checked ?? false);
+            iwFlag.Image = provider.GetImage(lbIconList.SelectedKey.Trim('\r'), size, cbShiny.Checked ?? false);
         }
     }
 
