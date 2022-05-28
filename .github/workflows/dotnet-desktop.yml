@@ -26,7 +26,7 @@ jobs:
       App_Project_Path_2: FlagsISO.EtoForms\FlagsISO.EtoForms.csproj
       
       App_Project_Directory_3: FlagsISO.WinForms\FlagsISO.WinForms
-      App_Project_Path_3: FlagsISO.WinForms\FlagsISO.WinForms\FlagsISO.WinForms.csproj
+      App_Project_Path_3: FlagsISO.WinForms\FlagsISO.WinForms.csproj
 
       NUGET_APIKEY: ${{ secrets.NUGET_APIKEY }}
       NUGETAPI: ${{ secrets.NUGETAPI }}      
