@@ -12,3 +12,24 @@ Full XML documentation is included (public/private). A sample application is inc
 
 WinForms: Contains a ComboBox control for country selection (ComboBoxCountrySelect).
 Eto.Forms: Contains a DropDown control for country selection (ComboBoxCountrySelect).
+
+
+_The sample application displaying a flag in a “lovely glossy finish” sized 64×64 pixels._
+
+![image](https://user-images.githubusercontent.com/40712699/170834396-74a8ba92-2d9e-4012-b5ae-0cd0058c7f6b.png)
+
+_An Eto.Forms sample application in Linux (GTK)_
+
+![image](https://user-images.githubusercontent.com/40712699/170834428-e1ecabd7-d38b-40d2-9003-cfeae6803563.png)
+
+_An Eto.Forms sample application in Windows (WPF)_
+
+![image](https://user-images.githubusercontent.com/40712699/170834466-db1bf9c1-fd73-4f47-8f1c-0bacc101f5d3.png)
+
+
+## Thanks to
+* [Go Squared Ltd](https://www.gosquared.com) Fot the PNG flac images (MIT): https://www.gosquared.com/resources/flag-icons/.
+* [Lipis](https://github.com/lipis) For the [flag-icons](https://github.com/lipis/flag-icons) library (MIT)
+* [JetBrains](http://www.jetbrains.com) for their open source license(s).
+
+![image](https://user-images.githubusercontent.com/40712699/170834690-1a5816b1-9611-47d2-8a5a-6f4505d43b2f.png)
