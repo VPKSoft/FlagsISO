@@ -1,10 +1,13 @@
 name: .NET Core NuGet publish
 
 on:
+  push:
+    tags:
+    - 'v*'
   create:
     tags:
-      - 'v*'
-      
+    - 'v*'
+
 jobs:
 
   build:
