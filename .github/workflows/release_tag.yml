@@ -21,7 +21,7 @@ jobs:
 
     env:
       Solution_Name: FlagsISO.sln
-      Solution_Path: FlagsISO\FlagsISO.csproj
+      Solution_Path: FlagsISO.sln
 
       NUGET_APIKEY: ${{ secrets.NUGET_APIKEY }}
       NUGETAPI: ${{ secrets.NUGETAPI }}      
