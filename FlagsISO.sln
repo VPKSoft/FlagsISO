@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlagsISO", "FlagsISO\FlagsI
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B351FE28-D13A-4183-B4FD-8C93B53BF740}"
 	ProjectSection(SolutionItems) = preProject
+		.github\dependabot.yml = .github\dependabot.yml
 		.github\workflows\dotnet-desktop.yml = .github\workflows\dotnet-desktop.yml
+		FlagsISO.sln.licenseheader = FlagsISO.sln.licenseheader
 		.github\workflows\release_tag.yml = .github\workflows\release_tag.yml
 	EndProjectSection
 EndProject
