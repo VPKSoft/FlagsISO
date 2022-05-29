@@ -1,6 +1,8 @@
 # FlagsISO
 Country flag resources and controls for WinForms &amp; Eto.Forms.
 
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/VPKSoft/FlagsISO/.NET%20Core%20Desktop?label=.NET%20Core%20Desktop)](https://github.com/VPKSoft/FlagsISO/actions/workflows/dotnet-desktop.yml) [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/VPKSoft/FlagsISO/.NET%20Core%20NuGet%20publish?label=.NET%20Core%20NuGet%20publish)](https://github.com/VPKSoft/FlagsISO/actions/workflows/release_tag.yml) [![Nuget](https://img.shields.io/nuget/v/FlagsISO?label=FlagsISO)](https://www.nuget.org/packages/FlagsISO/) [![Nuget](https://img.shields.io/nuget/v/FlagsISO.WinForms?label=FlagsISO.WinForms)](https://www.nuget.org/packages/FlagsISO.WinForms/) [![Nuget](https://img.shields.io/nuget/v/FlagsISO.EtoForms?label=FlagsISO.EtoForms)](https://www.nuget.org/packages/FlagsISO.EtoForms/)
+
 Includes 260 different country (and other) flags.
 
 The country (and other) flags int the library are in 4 different sizes: 16x16, 24x24, 32x32 and 64x64 an custom size via SVG (flag-icons).
